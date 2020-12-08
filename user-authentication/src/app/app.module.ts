@@ -33,6 +33,10 @@ import {
     MatAutocompleteModule,
     MatExpansionModule
 } from '@angular/material';
+import { ItemService } from './services/item-service/item.service';
+import {environment} from '../environments/environment'
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire';
 
 const materialModules = [
     MatCheckboxModule,
@@ -71,10 +75,12 @@ const materialModules = [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    materialModules
+    materialModules,
+    AngularFireModule.initializeApp(environment.firebase, 'user-authentication'),
+    AngularFirestoreModule
   ],
   exports: materialModules,
-  providers: [],
+  providers: [ItemService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
