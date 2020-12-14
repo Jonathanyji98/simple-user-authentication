@@ -1,0 +1,218 @@
+<div class="price-container">
+    <div class="row">
+      <!-- Basic Plan-->
+        <div class="col">
+          <mat-card [className]="selectedPlan == 'basic' ? 'price-card-selected mat-card' : 'price-card mat-card'" >
+            <div class="pricing-header row">
+              <div class="pricing-title col pl-0">
+                <h5>Basic</h5>
+                <div class="monthly-pricing">
+                  <div class="price">$0</div> /Month
+                </div>
+              </div>
+        
+              <div class="pricing-image col-auto"> 
+                <img src="/assets/payment/basic.svg" />
+              </div>
+            </div>
+        
+            <div class="member-quota invisible">
+              Up to 100 members
+            </div>
+        
+            <div class="row invisible">
+              <!-- <mat-slider class="col"
+                max="1"
+                min="0"
+                step="1"
+              >
+              </mat-slider> -->
+        
+              <div class="slider-desc col">
+                Slide To Increase Members
+              </div>
+            </div>
+        
+            <mat-list>
+              <mat-list-item *ngFor="let feature of basic">
+                <mat-icon *ngIf="feature.available"  style="color:#216FEA; font-size: 12px; line-height: 24px;"  mat-list-icon>done</mat-icon>
+                <mat-icon *ngIf="!feature.available" style="color:#767676; font-size: 12px; line-height: 24px;"  mat-list-icon>clear</mat-icon>
+                <div [className]="feature.available ? 'feature-available' : 'feature-unavailable'" mat-line>{{feature.desc}}</div>
+              </mat-list-item>
+            </mat-list>
+        
+            <div class="text-center button-wrapper"> 
+              <button *ngIf="selectedPlan != 'basic'" class="select-plan-button" mat-flat-button (click)="checkoutBasicPrice()">Select Plan</button>
+              <button *ngIf="selectedPlan == 'basic'" class="selected-plan-button" mat-flat-button>Current Plan</button>
+            </div>
+            <div *ngIf="selectedPlan == 'basic'" class="text-center" style="margin-top: -24px"> 
+              <span type="button" class="cancel-plan-button" mat-flat-button>Cancel My Plan</span>
+            </div>
+  
+        
+          </mat-card>
+        </div>
+  
+      <!-- Community Plan-->
+        <div class="col">
+          <mat-card [className]="selectedPlan == 'community' ? 'price-card-selected mat-card' : 'price-card mat-card'">
+            <div class="pricing-header row">
+              <div class="pricing-title col pl-0">
+                <h5>Community</h5>
+                <div class="monthly-pricing">
+                  <div class="price">${{communityPlan.price}}</div> /Month
+                </div>
+              </div>
+        
+              <div class="pricing-image col-auto"> 
+                <img src="/assets/payment/community.svg" />
+              </div>
+            </div>
+        
+            <div class="member-quota">
+              Up to 100 members
+            </div>
+        
+            <div class="row">
+              <!-- <mat-slider class="col"
+                max="1"
+                min="0"
+                step="1"
+                (input)="onInputChange($event,'community')"
+              >
+              </mat-slider> -->
+        
+              <div class="slider-desc col">
+                Slide To Increase Members
+              </div>
+            </div>
+        
+            <mat-list>
+              <mat-list-item *ngFor="let feature of community">
+                <mat-icon *ngIf="feature.available"  style="color:#216FEA; font-size: 12px; line-height: 24px;"  mat-list-icon>done</mat-icon>
+                <mat-icon *ngIf="!feature.available" style="color:#767676; font-size: 12px; line-height: 24px;"  mat-list-icon>clear</mat-icon>
+                <div [className]="feature.available ? 'feature-available' : 'feature-unavailable'" mat-line>{{feature.desc}}</div>
+              </mat-list-item>
+            </mat-list>
+        
+            <div class="text-center button-wrapper"> 
+              <button *ngIf="selectedPlan != 'community'" class="select-plan-button" mat-flat-button (click)="onChangePlan('community')">Select Plan</button>
+              <button *ngIf="selectedPlan == 'community'" class="selected-plan-button" mat-flat-button>Current Plan</button>
+            </div>
+            <div *ngIf="selectedPlan == 'community'" class="text-center" style="margin-top: -24px"> 
+              <span type="button" class="cancel-plan-button" mat-flat-button (click)="onCancelPlan()">Cancel My Plan</span>
+            </div>
+        
+          </mat-card>
+        </div>
+  
+        <!-- Performance Plan-->
+        <div class="col">
+          <mat-card [className]="selectedPlan == 'performance' ? 'price-card-selected mat-card' : 'price-card mat-card'">
+            <div class="pricing-header row">
+              <div class="pricing-title col pl-0">
+                <h5>Performance</h5>
+                <div class="monthly-pricing">
+                  <div class="price">${{performancePlan.price}}</div> /Month
+                </div>
+              </div>
+        
+              <div class="pricing-image col-auto"> 
+                <img src="/assets/payment/performance.svg" />
+              </div>
+            </div>
+        
+            <div class="member-quota">
+              Up to 100 members
+            </div>
+        
+            <div class="row">
+              <!-- <mat-slider class="col"
+                max="1"
+                min="0"
+                step="1"
+                (input)="onInputChange($event,'performance')"
+              >
+              </mat-slider> -->
+        
+              <div class="slider-desc col">
+                Slide To Increase Members
+              </div>
+            </div>
+        
+            <mat-list>
+              <mat-list-item *ngFor="let feature of performance">
+                <mat-icon *ngIf="feature.available"  style="color:#216FEA; font-size: 12px; line-height: 24px;"  mat-list-icon>done</mat-icon>
+                <mat-icon *ngIf="!feature.available" style="color:#767676; font-size: 12px; line-height: 24px;"  mat-list-icon>clear</mat-icon>
+                <div [className]="feature.available ? 'feature-available' : 'feature-unavailable'" mat-line>{{feature.desc}}</div>
+              </mat-list-item>
+            </mat-list>
+        
+            <div class="text-center button-wrapper"> 
+              <button *ngIf="selectedPlan != 'performance'" class="select-plan-button" mat-flat-button (click)="onChangePlan('performance')">Select Plan</button>
+              <button *ngIf="selectedPlan == 'performance'" class="selected-plan-button" mat-flat-button>Current Plan</button>
+            </div>
+            <div *ngIf="selectedPlan == 'performance'" class="text-center" style="margin-top: -24px"> 
+              <span type="button" class="cancel-plan-button" mat-flat-button>Cancel My Plan</span>
+            </div>
+        
+          </mat-card>
+        </div>
+  
+        <!-- Elite Plan-->
+        <div class="col">
+          <mat-card [className]="selectedPlan == 'elite' ? 'price-card-selected mat-card' : 'price-card mat-card'">
+            <div class="pricing-header row">
+              <div class="pricing-title col pl-0">
+                <h5>Elite</h5>
+                <h4>Coming Soon</h4>
+  
+                <!-- <div class="monthly-pricing">
+                  <div class="price">$0</div> /Month
+                </div> -->
+              </div>
+        
+              <div class="pricing-image col-auto"> 
+                <img src="/assets/payment/elite.svg" />
+              </div>
+            </div>
+        
+            <!-- <div class="member-quota" style="margin-top: -12px">
+              Up to 100 members
+            </div>
+        
+            <div class="row">
+              <mat-slider class="col"
+                max="1"
+                min="0"
+                step="1"
+              >
+              </mat-slider>
+        
+              <div class="slider-desc col">
+                Slide To Increase Members
+              </div>
+            </div> -->
+  
+        
+            <mat-list>
+              <mat-list-item *ngFor="let feature of elite">
+                <mat-icon *ngIf="feature.available"  style="color:#216FEA; font-size: 12px; line-height: 24px;"  mat-list-icon>done</mat-icon>
+                <mat-icon *ngIf="!feature.available" style="color:#767676; font-size: 12px; line-height: 24px;"  mat-list-icon>clear</mat-icon>
+                <div [className]="feature.available ? 'feature-available' : 'feature-unavailable'" mat-line>{{feature.desc}}</div>
+              </mat-list-item>
+            </mat-list>
+        
+            <div class="text-center button-wrapper invisible"> 
+              <button *ngIf="selectedPlan != 'elite'" class="select-plan-button" mat-flat-button (click)="onChangePlan('elite')">Select Plan</button>
+              <button *ngIf="selectedPlan == 'elite'" class="selected-plan-button" mat-flat-button>Current Plan</button>
+            </div>
+            <div *ngIf="selectedPlan == 'elite'" class="text-center" style="margin-top: -24px"> 
+              <span type="button" class="cancel-plan-button" mat-flat-button>Cancel My Plan</span>
+            </div>
+        
+          </mat-card>
+        </div>
+      </div>
+    </div>
+    

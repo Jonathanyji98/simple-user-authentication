@@ -37,6 +37,7 @@ import { ItemService } from './services/item-service/item.service';
 import {environment} from '../environments/environment'
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
+import { PaymentPortalComponent } from './payment-portal/payment-portal.component';
 
 const materialModules = [
     MatCheckboxModule,
@@ -69,7 +70,8 @@ const materialModules = [
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    PaymentPortalComponent
   ],
   imports: [
     BrowserModule,
