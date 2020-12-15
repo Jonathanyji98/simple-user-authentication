@@ -20,11 +20,11 @@ export const getSessionId = functions.https.onCall(async (data, context) => {
     cancel_url: 'https://example.com/cancel',
     payment_method_types: ['card'],
     line_items: [
-        {price: 'price_1HtOCwErANrRMY7ok8YqbS5U', quantity: 1},
+        {price: data.price, quantity: 1},
     ],
     mode: 'subscription',
 });
     
-    return session;
+    return session.id;
 });
 

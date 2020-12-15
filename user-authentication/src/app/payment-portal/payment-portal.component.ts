@@ -19,17 +19,18 @@ export class PaymentPortalComponent implements OnInit {
   ngOnInit() {
   }
 
-  async checkout(price: string) {
+  async checkout(price: string, _sessionId: any) {
     // const getSessionId = this.firebase.functions().httpsCallable('getSessionId');
     // getSessionId().then(function(result){
     //   console.log(result);
     // });
     const stripe = await this.stripePromise;
     const { error } = await stripe.redirectToCheckout({
-      mode: 'subscription',  
-      lineItems: [{ price: price, quantity: this.amount }],
-      successUrl: `${window.location.origin}/home`,
-      cancelUrl: `${window.location.origin}/home`,
+      sessionId: _sessionId
+      // mode: 'subscription',  
+      // lineItems: [{ price: price, quantity: this.amount }],
+      // successUrl: `${window.location.origin}/home`,
+      // cancelUrl: `${window.location.origin}/home`,
     });
   
     if (error) {
@@ -37,13 +38,18 @@ export class PaymentPortalComponent implements OnInit {
     }
   }
 
-  checkoutBasicPrice(){
+  async checkoutBasicPrice(){
     console.log("TESTING CLOUD FUNCTION");
     // this.checkout(this.price = 'price_1HtOCwErANrRMY7o0yxjPW13');
     const getSessionId = firebase.functions().httpsCallable('getSessionId');
-    getSessionId().then(function(result){
+     const id =await getSessionId({price:"price_1HtOCwErANrRMY7o0yxjPW13"})
+    console.log(id.data);
+    debugger;
+    this.checkout("price_1HtOCwErANrRMY7o0yxjPW13", id.data);
+    /*.then(function(result){
       console.log(result);
-    });
+      this.checkout("price_1HtOCwErANrRMY7o0yxjPW13", result);
+    });*/
     console.log("TESTING CLOUD FUNCTION 2");
   }
 
