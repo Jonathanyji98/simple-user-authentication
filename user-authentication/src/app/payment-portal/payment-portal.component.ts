@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { loadStripe } from '@stripe/stripe-js'; // this is typescript
+import * as firebase from 'firebase'
 
 declare var require: any
 @Component({
@@ -39,7 +40,7 @@ export class PaymentPortalComponent implements OnInit {
   checkoutBasicPrice(){
     console.log("TESTING CLOUD FUNCTION");
     // this.checkout(this.price = 'price_1HtOCwErANrRMY7o0yxjPW13');
-    const getSessionId = this.firebase.functions().httpsCallable('getSessionId');
+    const getSessionId = firebase.functions().httpsCallable('getSessionId');
     getSessionId().then(function(result){
       console.log(result);
     });
