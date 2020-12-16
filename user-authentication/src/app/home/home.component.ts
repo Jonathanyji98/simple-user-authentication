@@ -8,6 +8,12 @@ import { Item } from '../home/models/item'
 })
 export class HomeComponent implements OnInit {
 items: Item[];
+// itemsNew: Item;
+
+itemsNew: Item = {
+  title: '',
+  description: ''
+}
 
   constructor(private itemService: ItemService) { }
 
@@ -17,5 +23,18 @@ items: Item[];
       this.items = items;
     });
   }
+
+  addItem(){
+    console.log("This button adds a new item");
+  }
+
+  onSubmit(){
+    if((this.itemsNew !='') && (this.itemsNew !='')){
+      this.itemService.addItem(this.itemsNew);
+      this.itemsNew.title = '';
+      this.itemsNew.description = '';
+    }
+  }
+  
 
 }

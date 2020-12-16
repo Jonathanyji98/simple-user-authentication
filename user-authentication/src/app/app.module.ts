@@ -37,6 +37,7 @@ import { ItemService } from './services/item-service/item.service';
 import {environment} from '../environments/environment'
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
+import { FormsModule } from '@angular/forms';
 
 const materialModules = [
     MatCheckboxModule,
@@ -77,7 +78,8 @@ const materialModules = [
     BrowserAnimationsModule,
     materialModules,
     AngularFireModule.initializeApp(environment.firebase, 'user-authentication'),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule
   ],
   exports: materialModules,
   providers: [ItemService],
