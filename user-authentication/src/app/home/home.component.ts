@@ -28,13 +28,18 @@ itemsNew: Item = {
     console.log("This button adds a new item");
   }
 
+  deleteItem(event, item){
+    this.itemService.deleteItem(item);
+  }
+
   onSubmit(){
-    if((this.itemsNew !='') && (this.itemsNew !='')){
+    if((this.itemsNew !=null) && (this.itemsNew !=null)){
       this.itemService.addItem(this.itemsNew);
-      this.itemsNew.title = '';
-      this.itemsNew.description = '';
+      // this.itemsNew.title = '';
+      // this.itemsNew.description = '';
     }
   }
   
+
 
 }
